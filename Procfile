@@ -1,1 +1,1 @@
-web: gunicorn FinanceTracker.wsgi --log --file -
+web: gunicorn FinanceTracker.wsgi --log-file -
