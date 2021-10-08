@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container text-center mt-5" style="background-color: white;">
+    <form method="POST" class="py-3">    {% csrf_token %}
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete Item</h5>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure to delete this item ?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="{% url 'income_detail' %}" type="button" class="btn btn-secondary">Close</a>
+            <button type="submit" class="btn btn-danger">Yes</button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+</form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<section class="my-5 text-center container" style="background-color: white;">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Hello, {{user.username}}</h1>
+        <h3 class="lead">This month's report</h3>
+
+
+        <ul class="list-group my-3">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-light">Inflow</div>
+              </div>
+              <span class="">Rs. {{total_income_month}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-light">Outflow</div>
+              </div>
+              <span class="">Rs. {{total_expenditure_month}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-light">Net</div>
+                </div>
+                <span class="">Rs. {{net}}</span>
+              </li>
+          </ul>
+          <a href="{% url 'add_income' %}" class="btn btn-secondary my-2">Add Income</a>
+          <a href="{% url 'add_expenditure' %}" class="btn btn-secondary my-2">Add Expenditure</a>
+
+      </div>
+    </div>
+</section>
+
+  
+  <div class="container">
+    <div class="row align-items-start">
+      <div class="col">
+        <div class="container">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-light h3">Your Income</div>
+            </li>
+
+            {% for income_item in income_items %}
+                {% if forloop.counter < 6 %}
+                    <li class="list-group-item d-flex justify-content-between align-items-start" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">{{income_item.title}}</div>
+                    </div>
+                    <span class="">Rs. {{income_item.amount}}</span>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+          </ul>
+          <a href="{% url 'income_detail' %}" class="btn btn-secondary my-3">View all</a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="container">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-light h3">Your Expenditure</div>
+            </li>
+            {% for expenditure_item in expenditure_items %}
+                {% if forloop.counter < 6 %}
+                    <li class="list-group-item d-flex justify-content-between align-items-start" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">{{expenditure_item.title}}</div>
+                    </div>
+                    <span class="">Rs. {{expenditure_item.amount}}</span>
+                    </li>
+                {% endif %}
+            {% endfor %}
+          </ul>
+          <a href="{% url 'expenditure_detail' %}" class="btn btn-secondary my-3">View all</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %}

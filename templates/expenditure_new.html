@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="my-5 container" style="background-color: white; width: 50%;">
+
+<form class="py-3" method="POST" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">{%csrf_token%}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+</div>
+
+{% endblock content %} 

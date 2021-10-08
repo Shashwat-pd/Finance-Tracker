@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-5 text-center" style="background-color: white;">
+    <div class="container py-3">
+    <figure>
+        <blockquote class="h3">
+          <p>Rs. {{total_income}}</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          This month's income
+        </figcaption>
+      </figure>
+
+      <figure>
+        <blockquote class="h3">
+            <p>Rs. {{last_month_income}}</p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            Last month's income
+          </figcaption>
+      </figure>
+    </div>
+</div>
+
+<div class="container my-3 text-center" style="background-color: white;">
+    <form class="py-3" method="GET" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+        {{myFilter.form}}
+        <button class="btn-success" type="submit">Search</button>
+    </form>
+</div>
+
+<div class="container" style="background-color: white;">
+    <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for income_item in income_items %}
+          <tr>
+            <th scope="row">{{for}}</th>
+            <td>{{income_item.title}}</td>
+            <td>{{income_item.category}}</td>
+            <td>{{income_item.amount}}</td>
+            <td>{{income_item.transaction_date}}</td>
+            <td><a type="button" href="{% url 'income_delete' income_item.id %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete this item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg>
+            </a >
+        </td>
+          </tr>
+          {% endfor %}
+          <tr style="background-color: honeydew;">
+            <td><p></p></td>
+            <td><p></p></td>
+            <td>
+              <p><b> Total amount </b></p>
+            </td>
+
+            <td>
+              <p> {{total_amount_filter}} </p>
+            </td>
+            <td>
+              <p> </p>
+            </td>
+            <td>
+              <p> </p>
+            </td>
+          </tr>
+          
+
+        </tbody>
+      </table>
+</div>
+    
+
+{% endblock content %}
